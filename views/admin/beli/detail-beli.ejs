@@ -1,0 +1,42 @@
+<%- include('../../shared/includes/head', {title: 'Detail Transaksi Pembelian' }) %>
+  <link rel="stylesheet" href="/styles/login.css" />
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  <script src="/scripts/kelola-beli.js" defer></script>
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+      <h1>Detail Transaksi Pembelian</h1>
+      <p></p>
+      <main>
+        <form>
+          <div>
+            <label for="name">Nama Bahan</label>
+            <input type="text" id="name" name="name" value="<%= purchaseData.name %>" required />
+          </div>
+          <div>
+            <label for="price">Harga Satuan</label>
+            <input type="text" id="price" name="price" value="<%= purchaseData.price %>" required />
+          </div>
+          <div>
+            <label for="unit">Satuan</label>
+            <input type="text" id="unit" name="unit" value="<%= purchaseData.unit %>" required />
+          </div>
+          <div>
+            <label for="quantity">Jumlah</label>
+            <input type="number" id="quantity" name="quantity" value="<%= purchaseData.quantity %>" required />
+          </div>
+          <div>
+            <label for="description">Keterangan</label>
+            <textarea name="description" id="description" ><%= purchaseData.description %></textarea>
+          </div>
+        
+          <hr />
+          <button type="button" @click="updatePurchase" data-id="<%= purchaseData._id %>"  class="btn btn-add">Simpan</button>
+          <button type="button" @click="deletePurchase" data-id="<%= purchaseData._id %>"  class="btn btn-delete">Hapus</button>
+        </form>
+      </main>
+  </body>
+
+  </html>

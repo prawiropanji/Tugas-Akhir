@@ -1,0 +1,48 @@
+<%- include('../../shared/includes/head', {title: `Detail Produk`}) %>
+  <link rel="stylesheet" href="/styles/login.css" />
+  <link rel="stylesheet" href="/styles/image-preview.css">
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  <script src="/scripts/kelola-produk.js" defer></script>
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+      <h1>Detail Produk</h1>
+      <main>
+        <form action="/admin/kelola-produk/<%= product._id %>/ubah" method="POST" enctype="multipart/form-data">
+          <div>
+            <label for="name">Nama Produk</label>
+            <input type="text" id="name" name="name" value="<%= product.name %>" required />
+          </div>
+          <div>
+            <label for="price">Harga</label>
+            <input type="text" id="price" name="price" value="<%= product.price %>" required />
+          </div>
+          <div>
+            <label for="stock">Stok Produk</label>
+            <input type="number" id="stock" name="stock" value="<%= product.stock %>" required />
+          </div>
+          <div>
+            <label for="category">Kategori</label>
+            <select name="category" id="category">
+              <option value="makanan" <%= product.category === 'makanan'? 'selected' : '' %>>Makanan</option>
+              <option value="minuman" <%= product.category === 'minuman'? 'selected' : '' %>>Minuman</option>
+            </select>
+          </div>
+          <div>
+            <label for="image">Pilih Foto Produk</label>
+            <input @change="viewImage" type="file" accept="image/*" id="image" name="image"  />
+            <img id="image-preview">
+          </div>
+          <hr />
+          <div id="action-btn-area">
+          <button type="submit"  class="btn btn-add">Simpan</button>
+          <a href="/admin/kelola-produk/<%= product._id %>/hapus" class="btn btn-delete">Hapus</a> 
+        </div>
+        </form>
+      </main>
+  </body>
+
+  </html>

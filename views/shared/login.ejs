@@ -1,0 +1,21 @@
+<%- include('includes/head', {title: 'Login'}) %> 
+    <link rel="stylesheet" href="/styles/login.css" />
+  </head>
+  <body>
+    <h1>Okoono</h1>
+    <main>
+      <form action="/login" method="POST">
+        <div>
+          <label for="userid">User Id</label>
+          <input type="text" id="userid" name="userid" />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" />
+        </div>
+        <hr />
+        <button class="btn">Login</button>
+      </form>
+    </main>
+  </body>
+</html>

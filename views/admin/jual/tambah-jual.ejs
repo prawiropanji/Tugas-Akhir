@@ -1,0 +1,77 @@
+<%- include('../../shared/includes/head', {title: 'Tambah Transaksi Penjualan' }) %>
+  <link rel="stylesheet" href="/styles/login.css" />
+  <link rel="stylesheet" href="/styles/produk.css">
+  <link rel="stylesheet" href="/styles/tambah-jual.css">
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  <script src="/scripts/tambah-jual.js" defer></script>
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+      <h1>Tambah Transaksi Penjualan</h1>
+
+      <main>
+
+        <aside id="list-cart">
+        <h2>cart</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Produk</th>
+              <th>Harga Satuan</th>
+              <th>Jumlah</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr v-for="item in cart.items">
+              <td>1</td>
+              <td>{{item.name}}</td>
+              <td>{{item.price}}</td>
+              <td>{{item.quantity}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Jumlah Harga Total:  {{cart.totalPrice}}</p>
+        </aside>
+
+        <section id="list-product">
+        
+        <ul id="product-list">
+          <% for (const product of products) { %> 
+          <li class="product-item">
+            <section>
+             <img src="<%= product.imageUrl %>">
+            </section>
+           <section class="second-section">
+             <h2><%= product.name %></h2>
+             <div class="data-products">
+               <p class="data-column">Harga:</p>
+               <p>Rp<%= product.price %>,00</p>
+             </div>
+             <div class="data-products">
+               <p class="data-column">Stok Produk:</p>
+               <p><%= product.stock %></p>
+             </div>
+             <div class="data-products">
+               <p class="data-column">Kategori:</p>
+               <p><%= product.category %></p>
+             </div>
+             
+           
+             <button @click="addProductToCart" data-idproduct="<%= product._id %>" class="btn btn-add">+</button>
+             <button class="btn btn-delete">-</button>
+             
+            </section>
+          </li>
+         <% }  %> 
+        </ul>
+
+      </section>
+
+      </main>
+  </body>
+
+  </html>

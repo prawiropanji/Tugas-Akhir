@@ -1,0 +1,13 @@
+main {
+  width: 70%;
+  padding: 25px 40px;
+}
+
+main h2 {
+  text-align: center;
+}
+
+.btn {
+  width: auto;
+  display: inline-block;
+}

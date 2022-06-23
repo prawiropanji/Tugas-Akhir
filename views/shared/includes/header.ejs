@@ -1,0 +1,25 @@
+<header id="main-header">
+  <button id="menu-btn" @click="toggleMenu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav>
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <% if (locals.isAdmin) {%>
+      <li><a href="/admin/kelola-akun">Kelola Akun User</a></li>
+      <li><a href="/admin/kelola-produk">Kelola Produk</a></li>
+      <li>
+        <a href="/admin/kelola-transaksi-pembelian">Kelola Transaksi Beli</a>
+      </li>
+      <% } %>
+      <li>
+        <a href="/admin/kelola-transaksi-penjualan">Kelola Transaksi Jual</a>
+      </li>
+      <% if (locals.isAdmin) {%>
+      <li><a href="">Laporan</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,47 @@
+<%- include('../../shared/includes/head', {title: 'Kelola Produk' }) %>
+
+  <link rel="stylesheet" href="/styles/produk.css">
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  
+
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+
+      <h1>Kelola Produk</h1>
+
+
+      <main>
+        <a href="/admin/kelola-produk/tambah" class="btn btn-add">Tambah Produk</a>
+       <ul id="product-list">
+         <% for (const product of products) { %> 
+         <li class="product-item">
+           <section>
+            <img src="<%= product.imageUrl %>">
+           </section>
+          <section class="second-section">
+            <h2><%= product.name %></h2>
+            <div class="data-products">
+              <p class="data-column">Harga:</p>
+              <p>Rp<%= product.price %>,00</p>
+            </div>
+            <div class="data-products">
+              <p class="data-column">Stok Produk:</p>
+              <p><%= product.stock %></p>
+            </div>
+            <div class="data-products">
+              <p class="data-column">Kategori:</p>
+              <p><%= product.category %></p>
+            </div>
+            
+            <a href="/admin/kelola-produk/<%= product._id %>" class="btn">lihat & edit</a>
+           </section>
+         </li>
+        <% }  %> 
+       </ul>
+      </main>
+  </body>
+
+  </html>

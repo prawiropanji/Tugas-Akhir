@@ -1,0 +1,21 @@
+#image-preview {
+  width: 200px;
+  height: 200px;
+  display: none;
+}
+
+.btn-add {
+  width: auto;
+  padding: var(--space-2) var(--space-4);
+}
+
+.btn-delete {
+  width: auto;
+  padding: var(--space-2) var(--space-4);
+}
+
+#action-btn-area {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

@@ -1,0 +1,52 @@
+<%- include('../../shared/includes/head', {title: 'Kelola Transaksi Pembelian' }) %>
+
+  <link rel="stylesheet" href="/styles/beli.css">
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  <script src="/scripts/kelola-beli.js" defer></script>
+  
+
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+
+      <h1>Kelola Transaksi Pembelian</h1>
+
+
+      <main>
+        <a href="/admin/kelola-transaksi-pembelian/tambah" class="btn btn-add">Tambah Transkasi Pembelian</a>
+        <h2>{{`${currentDate.getDate()} - ${currentDate.getMonth()} - ${currentDate.getFullYear()}`}}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Bahan</th>
+              <th>Harga Satuan</th>
+              <th>Satuan</th>
+              <th>Jumlah</th>
+              <th>Tanggal Beli</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% purchases.map(function(element,index){  %> 
+              <tr>
+                <td><%= ++index %></td>
+                <td><%= element.name %></td>
+                <td><%= element.price %></td>
+                <td><%= element.unit %></td>
+                <td><%= element.quantity %></td>
+                <td><%= element.date %></td>
+                <td>
+                  <a href="/admin/kelola-transaksi-pembelian/<%= element._id %>" class="btn"> Lihat </a>
+                </td>
+              </tr>
+            <%  }) %> 
+          </tbody>
+        </table>
+     
+      </main>
+  </body>
+
+  </html>

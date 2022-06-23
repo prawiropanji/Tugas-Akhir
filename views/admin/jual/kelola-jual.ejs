@@ -1,0 +1,34 @@
+<%- include('../../shared/includes/head', {title: 'Kelola Transaksi Penjualan' }) %>
+
+  <link rel="stylesheet" href="/styles/beli.css">
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  <script src="/scripts/kelola-beli.js" defer></script>
+  
+
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+
+      <h1>Kelola Transaksi Penjualan</h1>
+
+
+      <main>
+        <a href="/admin/kelola-transaksi-penjualan/tambah" class="btn btn-add">Tambah Transkasi Penjualan</a>
+        <h2>{{`${currentDate.getDate()} - ${currentDate.getMonth()} - ${currentDate.getFullYear()}`}}</h2>
+        <table>
+          <thead>
+            <tr>
+
+            </tr>
+          </thead>
+          <tbody>
+       
+          </tbody>
+        </table>
+     
+      </main>
+  </body>
+
+  </html>

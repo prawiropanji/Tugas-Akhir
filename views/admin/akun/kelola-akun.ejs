@@ -1,0 +1,44 @@
+<%- include('../../shared/includes/head', {title: 'Kelola Akun' }) %>
+
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  <script src="/scripts/kelola-akun.js" defer></script>
+
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+
+      <h1>Kelola Akun</h1>
+
+
+      <main>
+        <a class="btn" href="/admin/kelola-akun/daftar">Tambah</a>
+        <br><br><br>
+        <table>
+          <thead>
+          <tr>
+            <th>User Id</th>
+            <th>Nama</th>
+            <th>No Handphone</th>
+            <th>Peran</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (const accountDetail of accountDetails) { %> 
+          <tr>
+            <td><%= accountDetail.userId %></td>
+            <td><%= accountDetail.name %></td>
+            <td><%= accountDetail.phone %></td>
+            <td><%= accountDetail.isAdmin? 'admin' : 'pegawai' %></td>
+            <td><button data-id="<%= accountDetail._id %>"  class="btn btn-delete" @click="deleteAccount">Hapus</button></td>
+          </tr>
+          <% } %> 
+        </tbody>
+        </table>
+      </main>
+  </body>
+
+  </html>

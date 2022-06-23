@@ -1,0 +1,18 @@
+<%- include('includes/head', {title: 'Home'}) %> 
+<script src="https://unpkg.com/vue@3"></script>
+<script src="/scripts/live-time.js" defer></script>
+<script src="/scripts/sidebar-menu.js" defer></script>
+  </head>
+  <body>
+    <%- include('includes/header') %> 
+    <div id="realtime-clock">
+      <p></p>
+    </div>
+
+    <h1>Welcome <%= locals.isAdmin ? 'admin' : 'pegawai' %></h1>
+ 
+    <nav id="side-nav">
+
+    </nav>
+  </body>
+</html>

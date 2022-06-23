@@ -1,0 +1,39 @@
+<%- include('../../shared/includes/head', {title: 'Tambah Transaksi Pembelian' }) %>
+  <link rel="stylesheet" href="/styles/login.css" />
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+      <h1>Tambah Transaksi Pembelian</h1>
+      <main>
+        <form action="/admin/kelola-transaksi-pembelian/tambah" method="POST">
+          <div>
+            <label for="name">Nama Bahan</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div>
+            <label for="price">Harga Satuan</label>
+            <input type="text" id="price" name="price" required />
+          </div>
+          <div>
+            <label for="unit">Satuan</label>
+            <input type="text" id="unit" name="unit" required />
+          </div>
+          <div>
+            <label for="quantity">Satuan</label>
+            <input type="number" id="quantity" name="quantity" required />
+          </div>
+          <div>
+            <label for="description">Keterangan</label>
+            <textarea name="description" id="description"></textarea>
+          </div>
+        
+          <hr />
+          <button class="btn btn-add">Tambah</button>
+        </form>
+      </main>
+  </body>
+
+  </html>
