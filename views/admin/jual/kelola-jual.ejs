@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="/styles/beli.css">
   <script src="https://unpkg.com/vue@3"></script>
   <script src="/scripts/sidebar-menu.js" defer></script>
-  <script src="/scripts/kelola-beli.js" defer></script>
+  <script src="/scripts/kelola-jual.js" defer></script>
   
 
   </head>
@@ -16,15 +16,33 @@
 
       <main>
         <a href="/admin/kelola-transaksi-penjualan/tambah" class="btn btn-add">Tambah Transkasi Penjualan</a>
-        <h2>{{`${currentDate.getDate()} - ${currentDate.getMonth()} - ${currentDate.getFullYear()}`}}</h2>
+        <h2>{{`${currentDate.getDate()} - ${currentDate.getMonth()+1} - ${currentDate.getFullYear()}`}}</h2>
         <table>
           <thead>
             <tr>
-
+              <th>No</th>
+              <th>ID Transaksi</th>
+              <th>Total Harga</th>
+              <th>Metode Pembayaran</th>
+              <th>Kasir</th>
+              <th>Tanggal Jual</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
-       
+            <% sales.map(function(element,index){  %> 
+              <tr>
+                <td><%= ++index %></td>
+                <td><%= element._id %></td>
+                <td><%= element.totalPrice %></td>
+                <td><%= element.paymentMethod %></td>
+                <td><%= element.cashier %></td>
+                <td><%= element.date %></td>
+                <td>
+                  <a href="/admin/kelola-transaksi-penjualan/<%= element._id %>" class="btn"> Lihat </a>
+                </td>
+              </tr>
+            <%  }) %> 
           </tbody>
         </table>
      

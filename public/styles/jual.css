@@ -1,0 +1,24 @@
+#list-product-sale {
+  list-style: disc;
+  padding-left: var(--space-8);
+  margin-bottom: 2rem;
+}
+
+main p {
+  font-size: 1.4rem;
+}
+
+.btn {
+  display: block;
+  text-align: center;
+}
+
+/* .button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 0 var(--space-4);
+} */
+
+.sale-fields {
+  font-weight: 800;
+}

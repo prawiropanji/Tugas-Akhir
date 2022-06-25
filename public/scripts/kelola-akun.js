@@ -1,7 +1,7 @@
 const KelolaAkun = {
   data() {
     return {
-      test: 'hello world',
+      id: '',
     };
   },
   methods: {
@@ -11,9 +11,19 @@ const KelolaAkun = {
         method: 'DELETE',
       });
 
-      event.target.parentElement.parentElement.remove();
+      document.querySelector('.modal').classList.toggle('open-modal');
+
+      document.getElementById(accountId).remove();
+
+      // event.target.parentElement.parentElement.remove();
+    },
+    toggleModal(event) {
+      const accountId = event.target.dataset.id;
+      this.id = accountId;
+      const modalElement = document.querySelector('.modal');
+      modalElement.classList.toggle('open-modal');
     },
   },
 };
 
-Vue.createApp(KelolaAkun).mount('table');
+Vue.createApp(KelolaAkun).mount('main');

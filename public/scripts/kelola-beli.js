@@ -64,6 +64,10 @@ const KelolaBeli = {
 
       window.location.replace('/admin/kelola-transaksi-pembelian');
     },
+    toggleModal() {
+      const modalElement = document.querySelector('.modal');
+      modalElement.classList.toggle('open-modal');
+    },
   },
 };
 

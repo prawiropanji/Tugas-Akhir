@@ -1,0 +1,22 @@
+<div class="modal">
+  <div class="dialog">
+    <p>Apakah anda yakin ingin menghapus?</p>
+    <div class="button-group">
+      <button
+        type="button"
+        @click="<%= eventHandler[0] %>"
+        data-id="<%= idDetail %>"
+        class="btn btn-delete btn-modal"
+      >
+        Hapus
+      </button>
+      <button
+        type="button"
+        @click="<%= eventHandler[1] %>"
+        class="btn btn-close btn-modal"
+      >
+        Tutup
+      </button>
+    </div>
+  </div>
+</div>

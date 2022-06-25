@@ -14,10 +14,12 @@ class Purchase {
   static async getAllPurchase() {
     const purchases = await db.getDb().collection('purchases').find().toArray();
     const formatedData = purchases.map(function (purchase) {
-      let monthPurchase = new Date(purchase.date).getMonth();
-      const datePurchase = new Date(purchase.date).getDate();
-      const yearPurchase = new Date(purchase.date).getFullYear();
-      const date = `${datePurchase}-${++monthPurchase}-${yearPurchase}`;
+      const date = new Date(purchase.date).toLocaleDateString('id-ID', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
       return { ...purchase, date };
     });
     return formatedData;

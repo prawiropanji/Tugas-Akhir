@@ -1,5 +1,6 @@
 const db = require('../data/database');
 const mongodb = require('mongodb');
+const currencyFormatter = require('currency-formatter');
 
 class Product {
   constructor(name, price, stock, category, image) {
@@ -15,11 +16,13 @@ class Product {
   static async getAllProduct() {
     let products = await db.getDb().collection('products').find().toArray();
     //format setiap harga
-    const result = products.map(function (product, index) {
-      const endIndex = product.price.length - 3;
-      const angka = product.price.slice(0, endIndex);
-      const ribuan = product.price.slice(-3);
-      const price = `${angka}.${ribuan}`;
+    const result = products.map(function (product) {
+      let price = currencyFormatter.format(+product.price, {
+        locale: 'id-ID',
+      });
+
+      price = price + ',00';
+
       return { ...product, price };
     });
     return result;
@@ -33,10 +36,7 @@ class Product {
       : await db
           .getDb()
           .collection('products')
-          .findOne(
-            { _id: objectId },
-            { projection: { name: 1, price: 1, _id: 0 } }
-          );
+          .findOne({ _id: objectId }, { projection: { name: 1, price: 1 } });
 
     return product;
   }

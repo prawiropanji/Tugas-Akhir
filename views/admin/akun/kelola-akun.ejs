@@ -28,16 +28,48 @@
         </thead>
         <tbody>
           <% for (const accountDetail of accountDetails) { %> 
-          <tr>
+          
+          <tr id="<%= accountDetail._id %>">
             <td><%= accountDetail.userId %></td>
             <td><%= accountDetail.name %></td>
             <td><%= accountDetail.phone %></td>
             <td><%= accountDetail.isAdmin? 'admin' : 'pegawai' %></td>
-            <td><button data-id="<%= accountDetail._id %>"  class="btn btn-delete" @click="deleteAccount">Hapus</button></td>
+  
+            <td><button data-id="<%= accountDetail._id %>"  class="btn btn-delete" @click="toggleModal">Hapus</button></td>
           </tr>
+         
+
           <% } %> 
         </tbody>
+
+      
+
         </table>
+        
+        <div class="modal">
+          <div class="dialog">
+            <p>Apakah anda yakin ingin menghapus?</p>
+            <div class="button-group">
+              <button
+                type="button"
+                @click="deleteAccount"
+                
+                :data-id="id"
+                class="btn btn-delete btn-modal"
+              >
+                Hapus
+              </button>
+              <button
+                type="button"
+                @click="toggleModal"
+                class="btn btn-close btn-modal"
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+        
       </main>
   </body>
 

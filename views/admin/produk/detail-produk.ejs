@@ -39,8 +39,10 @@
           <hr />
           <div id="action-btn-area">
           <button type="submit"  class="btn btn-add">Simpan</button>
-          <a href="/admin/kelola-produk/<%= product._id %>/hapus" class="btn btn-delete">Hapus</a> 
+          <!-- <a href="/admin/kelola-produk/<%= product._id %>/hapus" class="btn btn-delete">Hapus</a>  -->
+          <a @click="toggleModal" class="btn btn-delete">Hapus</a> 
         </div>
+        <%- include('../../shared/includes/modal', {idDetail : product._id ,eventHandler : ['deleteProduct', 'toggleModal']}) %> 
         </form>
       </main>
   </body>

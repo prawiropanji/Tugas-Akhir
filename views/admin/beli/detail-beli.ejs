@@ -29,14 +29,23 @@
           </div>
           <div>
             <label for="description">Keterangan</label>
-            <textarea name="description" id="description" ><%= purchaseData.description %></textarea>
+            <textarea name="description" id="description"><%= purchaseData.description %></textarea>
           </div>
-        
+
           <hr />
-          <button type="button" @click="updatePurchase" data-id="<%= purchaseData._id %>"  class="btn btn-add">Simpan</button>
-          <button type="button" @click="deletePurchase" data-id="<%= purchaseData._id %>"  class="btn btn-delete">Hapus</button>
+          <div class="button-group">
+          <button type="button" @click="updatePurchase" data-id="<%= purchaseData._id %>"
+            class="btn btn-add">Simpan</button>
+          <button type="button" @click="toggleModal" data-id="<%= purchaseData._id %>"
+            class="btn btn-delete">Hapus</button>
+          </div>
+            
+          <%- include('../../shared/includes/modal', {idDetail: purchaseData._id , eventHandler : ['deletePurchase', 'toggleModal']}) %> 
+
         </form>
       </main>
+
+      
   </body>
 
   </html>

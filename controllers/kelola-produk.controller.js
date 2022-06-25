@@ -58,7 +58,8 @@ async function ubahProduk(req, res) {
 
 async function hapusProduk(req, res) {
   await Product.deleteProduct(req.params.id);
-  res.redirect('/admin/kelola-produk');
+  // res.redirect('/admin/kelola-produk');
+  res.status(200).json({ message: 'delete success' });
 }
 
 module.exports = {

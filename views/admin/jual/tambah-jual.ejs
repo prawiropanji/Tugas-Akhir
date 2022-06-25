@@ -3,75 +3,113 @@
   <link rel="stylesheet" href="/styles/produk.css">
   <link rel="stylesheet" href="/styles/tambah-jual.css">
   <script src="https://unpkg.com/vue@3"></script>
-  <script src="/scripts/sidebar-menu.js" defer></script>
   <script src="/scripts/tambah-jual.js" defer></script>
+
   </head>
 
   <body>
     <%- include('../../shared/includes/header') %>
       <h1>Tambah Transaksi Penjualan</h1>
 
+
       <main>
 
         <aside id="list-cart">
-        <h2>cart</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Produk</th>
-              <th>Harga Satuan</th>
-              <th>Jumlah</th>
-            </tr>
-          </thead>
-          <tbody>
+          <h2>cart</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Produk</th>
+                <th>Harga Satuan</th>
+                <th>Jumlah</th>
 
-            <tr v-for="item in cart.items">
-              <td>1</td>
-              <td>{{item.name}}</td>
-              <td>{{item.price}}</td>
-              <td>{{item.quantity}}</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>Jumlah Harga Total:  {{cart.totalPrice}}</p>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr v-for="item in cart.items">
+                <td>1</td>
+
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.quantity}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+          <p id="harga-total">Jumlah Harga Total: {{cart.totalPrice}}</p>
+
+          <form>
+            <p>Metode Pembayaran:</p>
+            <div>
+              <label for="cash">
+                <input type="radio" id="cash" name="payment" value="cash">Tunai
+              </label>
+            </div>
+            <div>
+              <label for="shopeepay">
+                <input type="radio" id="shopeepay" name="payment" value="shopeepay">Shopeepay
+              </label>
+            </div>
+            <div>
+              <label for="transfer">
+                <input type="radio" id="transfer" name="payment" value="transfer" >Debit
+              </label>
+            </div>
+            
+          </form>
+          <button @click='setSale' class="btn">Bayar</button>
+
         </aside>
 
         <section id="list-product">
-        
-        <ul id="product-list">
-          <% for (const product of products) { %> 
-          <li class="product-item">
-            <section>
-             <img src="<%= product.imageUrl %>">
-            </section>
-           <section class="second-section">
-             <h2><%= product.name %></h2>
-             <div class="data-products">
-               <p class="data-column">Harga:</p>
-               <p>Rp<%= product.price %>,00</p>
-             </div>
-             <div class="data-products">
-               <p class="data-column">Stok Produk:</p>
-               <p><%= product.stock %></p>
-             </div>
-             <div class="data-products">
-               <p class="data-column">Kategori:</p>
-               <p><%= product.category %></p>
-             </div>
-             
-           
-             <button @click="addProductToCart" data-idproduct="<%= product._id %>" class="btn btn-add">+</button>
-             <button class="btn btn-delete">-</button>
-             
-            </section>
-          </li>
-         <% }  %> 
-        </ul>
 
-      </section>
+          <ul id="product-list">
+            <% for (const product of products) { %>
+              <li class="product-item">
+                <section>
+                  <img src="<%= product.imageUrl %>">
+                </section>
+                <section class="second-section">
+                  <h2>
+                    <%= product.name %>
+                  </h2>
+                  <div class="data-products">
+                    <p class="data-column">Harga:</p>
+                    <p>
+                      <%= product.price %>
+                    </p>
+                  </div>
+                  <div class="data-products">
+                    <p class="data-column">Stok Produk:</p>
+                    <p>
+                      <%= product.stock %>
+                    </p>
+                  </div>
+                  <div class="data-products">
+                    <p class="data-column">Kategori:</p>
+                    <p>
+                      <%= product.category %>
+                    </p>
+                  </div>
+
+
+                  <button @click="addProductToCart" data-idproduct="<%= product._id %>" class="btn btn-add"> + </button>
+                  <button @click="ridCartProduct" data-idproduct="<%= product._id %>" class="btn btn-delete"> -
+                  </button>
+
+
+                </section>
+              </li>
+              <% } %>
+          </ul>
+
+        </section>
 
       </main>
+
+
   </body>
 
   </html>

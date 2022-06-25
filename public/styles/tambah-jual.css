@@ -14,7 +14,10 @@ main {
 #list-cart {
   width: 40%;
   background-color: #fff;
-  padding: 25px 40px;
+  padding: 2%;
+  box-shadow: rgba(69, 70, 71, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 #list-cart h2 {
@@ -24,4 +27,31 @@ main {
 
 #list-product {
   width: 40%;
+}
+
+#harga-total {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+form {
+  margin-bottom: 34px;
+}
+
+form p {
+  font-size: 1.2rem;
+}
+
+form label {
+  margin-bottom: var(--space-4);
+}
+
+form input {
+  width: auto;
+  margin: 0 calc(6rem / 16) 0 0;
+}
+
+#list-cart .btn {
+  display: block;
+  margin: 0 auto;
 }

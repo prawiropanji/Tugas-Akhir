@@ -18,6 +18,14 @@ const KelolaProduk = {
       imagePreviewElement.style.display = 'block';
       imagePreviewElement.src = urlGenerated;
     },
+    async deleteProduct(event) {
+      await fetch(`/admin/kelola-produk/${event.target.dataset.id}/hapus`);
+      window.location.replace('/admin/kelola-produk');
+    },
+    toggleModal() {
+      const modalElement = document.querySelector('.modal');
+      modalElement.classList.toggle('open-modal');
+    },
   },
 };
 

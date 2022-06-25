@@ -1,0 +1,35 @@
+<%- include('../../shared/includes/head', {title: 'Detail Transaksi Penjualan' }) %>
+  <link rel="stylesheet" href="/styles/login.css" />
+  <link rel="stylesheet" href="/styles/jual.css">
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  <script src="/scripts/kelola-beli.js" defer></script>
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+      <h1>Detail Transaksi Penjualan</h1>
+      <p></p>
+      <main>
+          <p><span class="sale-fields">ID Transaksi Penjualan :</span> <%= sale._id %></p>
+          <p><span class="sale-fields">Barang yang dibeli :</span></p>
+          <ul id="list-product-sale">
+            <%for (const product of sale.products)  {%>
+              <li><%= product.name %> (<%= product.quantity %>)</li>
+            <% } %> 
+           
+          </ul>
+          <p><span class="sale-fields">Total Bayar :</span> <%= sale.totalPrice %></p>
+          <p><span class="sale-fields">Waktu Bayar :</span> <%= sale.date %></p>
+          <p><span class="sale-fields">Metode Pembayaran :</span> <%= sale.paymentMethod %></p>
+          <p><span class="sale-fields">Kasir :</span> <%= sale.cashier %></p>
+          
+          <hr />
+          <div class="button-group">
+          <button type="button" @click="voidSale"  class="btn btn-delete">Void</button>
+          <a class="btn" href="/admin/kelola-transaksi-penjualan">Kembali</a>
+        </div>
+      </main>
+  </body>
+
+  </html>
