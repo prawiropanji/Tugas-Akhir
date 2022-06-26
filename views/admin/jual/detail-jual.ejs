@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="/styles/jual.css">
   <script src="https://unpkg.com/vue@3"></script>
   <script src="/scripts/sidebar-menu.js" defer></script>
-  <script src="/scripts/kelola-beli.js" defer></script>
+  <script src="/scripts/kelola-jual.js" defer></script>
   </head>
 
   <body>
@@ -11,23 +11,49 @@
       <h1>Detail Transaksi Penjualan</h1>
       <p></p>
       <main>
-          <p><span class="sale-fields">ID Transaksi Penjualan :</span> <%= sale._id %></p>
-          <p><span class="sale-fields">Barang yang dibeli :</span></p>
-          <ul id="list-product-sale">
-            <%for (const product of sale.products)  {%>
-              <li><%= product.name %> (<%= product.quantity %>)</li>
-            <% } %> 
-           
-          </ul>
-          <p><span class="sale-fields">Total Bayar :</span> <%= sale.totalPrice %></p>
-          <p><span class="sale-fields">Waktu Bayar :</span> <%= sale.date %></p>
-          <p><span class="sale-fields">Metode Pembayaran :</span> <%= sale.paymentMethod %></p>
-          <p><span class="sale-fields">Kasir :</span> <%= sale.cashier %></p>
-          
-          <hr />
-          <div class="button-group">
-          <button type="button" @click="voidSale"  class="btn btn-delete">Void</button>
+        <p><span class="sale-fields">ID Transaksi Penjualan :</span>
+          <%= sale._id %>
+        </p>
+        <p><span class="sale-fields">Barang yang dibeli :</span></p>
+        <ul id="list-product-sale">
+          <%for (const product of sale.products) {%>
+            <li>
+              <%= product.name %> (<%= product.quantity %>)
+            </li>
+            <% } %>
+
+        </ul>
+        <p><span class="sale-fields">Total Bayar :</span>
+          <%= sale.totalPrice %>
+        </p>
+        <p><span class="sale-fields">Waktu Bayar :</span>
+          <%= sale.date %>
+        </p>
+        <p><span class="sale-fields">Metode Pembayaran :</span>
+          <%= sale.paymentMethod %>
+        </p>
+        <p><span class="sale-fields">Kasir :</span>
+          <%= sale.cashier %>
+        </p>
+
+        <hr />
+        <div class="button-group">
+          <button type="button"  @click="toggleVoidForm" class="btn btn-delete">Void</button>
+
           <a class="btn" href="/admin/kelola-transaksi-penjualan">Kembali</a>
+        </div>
+        <div class="modal">
+          <div class="dialog">
+              <form>
+                <label for="reason">Alasan void transaksi penjualan</label>
+                
+                <textarea name="reason" id="reason"></textarea>
+                <div class="button-group">
+                <button data-id="<%= sale._id %>" class="btn btn-delete" type="button" @click="setVoid">Kirim</button>
+                <button class="btn btn-close" type="button" @click="toggleVoidForm">tutup</button>
+              </div>
+              </form>
+          </div>
         </div>
       </main>
   </body>

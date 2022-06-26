@@ -4,6 +4,10 @@
   margin-bottom: 2rem;
 }
 
+.main-kelola {
+  width: 90%;
+}
+
 main p {
   font-size: 1.4rem;
 }
@@ -13,12 +17,17 @@ main p {
   text-align: center;
 }
 
-/* .button-group {
-  display: flex;
-  flex-direction: row;
-  gap: 0 var(--space-4);
-} */
+#tambah-penjualan-btn {
+  display: inline-block;
+  width: auto;
+  margin-bottom: 20px;
+}
 
 .sale-fields {
   font-weight: 800;
+}
+
+.modal .dialog {
+  padding: 10px;
+  height: auto;
 }

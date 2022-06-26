@@ -65,9 +65,13 @@ const TambahJual = {
 
       if (bodyRes.errorMessage) {
         alert(bodyRes.errorMessage);
+        return;
       }
 
       this.cart = { items: [], totalPrice: 0 };
+
+      window.alert('Menambahkan Transaksi Penjualan');
+
       const radioInputElements = document.querySelectorAll('input');
       for (const radioInputElement of radioInputElements) {
         radioInputElement.checked = false;

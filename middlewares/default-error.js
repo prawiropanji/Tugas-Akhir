@@ -1,6 +1,6 @@
-function handleDefaultError(err, req, res, next) {
-  res.render('shared/errors/500');
-  console.log(err);
+function handleDefaultError(error, req, res, next) {
+  console.log(error);
+  res.status(500).render('shared/errors/500');
 }
 
 module.exports = handleDefaultError;

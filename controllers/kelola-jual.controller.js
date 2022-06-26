@@ -4,6 +4,7 @@ const Sale = require('../models/sale.model');
 
 async function getKelolaJualPage(req, res) {
   const sales = await Sale.getAllSale();
+
   res.render('admin/jual/kelola-jual', { sales });
 }
 
@@ -82,8 +83,31 @@ async function setTambahJual(req, res) {
 
 async function getDetailJual(req, res) {
   const sale = await Sale.getSaleById(req.params.id);
-  console.log(sale);
+
   res.render('admin/jual/detail-jual', { sale });
+}
+
+async function setVoidRequest(req, res) {
+  await Sale.void(req.params.id, req.body.reason);
+
+  res.json({ message: 'set void request sucess' });
+}
+
+async function getListVoid(req, res) {
+  const listVoid = await Sale.getVoid();
+  res.render('admin/jual/kelola-void', { listVoid });
+  // console.log(listVoid);
+}
+
+async function deleteJual(req, res) {
+  await Sale.deleteSale(req.params.id);
+
+  res.status(200).json({ message: 'delete sale success' });
+}
+
+async function rejectVoid(req, res) {
+  await Sale.rejectVoid(req.params.id);
+  res.status(200).json({ message: 'reject void success' });
 }
 
 module.exports = {
@@ -94,4 +118,8 @@ module.exports = {
   ridCartProduct: ridCartProduct,
   setTambahJual: setTambahJual,
   getDetailJual: getDetailJual,
+  setVoidRequest: setVoidRequest,
+  getListVoid: getListVoid,
+  deleteJual: deleteJual,
+  rejectVoid: rejectVoid,
 };

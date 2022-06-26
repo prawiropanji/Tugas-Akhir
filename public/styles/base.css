@@ -148,3 +148,7 @@ main {
   width: auto;
   border-radius: 20px;
 }
+
+.red-font {
+  color: #f44336;
+}

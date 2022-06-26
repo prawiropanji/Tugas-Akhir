@@ -12,7 +12,23 @@ router.post(
   jualControllers.setTambahJual
 );
 
+router.delete(
+  '/kelola-transkasi-penjualan/:id/hapus',
+  jualControllers.deleteJual
+);
+
+router.patch(
+  '/kelola-transkasi-penjualan/:id/patch',
+  jualControllers.rejectVoid
+);
+
 router.get('/kelola-transaksi-penjualan/:id', jualControllers.getDetailJual);
+router.post(
+  '/kelola-transaksi-penjualan/:id/void',
+  jualControllers.setVoidRequest
+);
+
+router.get('/permintaan-void', jualControllers.getListVoid);
 
 router.get('/cart', jualControllers.getCart);
 

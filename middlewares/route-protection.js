@@ -5,8 +5,9 @@ function routeProtection(req, res, next) {
   }
 
   if (!req.session.isLoggedIn) {
-    return res.status(401).redirect('/401');
+    return res.status(401).render('shared/errors/401');
   }
+
   next();
 }
 
