@@ -11,14 +11,20 @@
     <%- include('../../shared/includes/header') %>
       <h1>Detail Produk</h1>
       <main>
+        <% if (errorMessage){ %>
+
+          <p class="error">
+            <%= errorMessage %>
+          </p>
+          <% } %>
         <form action="/admin/kelola-produk/<%= product._id %>/ubah" method="POST" enctype="multipart/form-data">
           <div>
             <label for="name">Nama Produk</label>
-            <input type="text" id="name" name="name" value="<%= product.name %>" required />
+            <input type="text" id="name" name="name" value="<%= product.name %>"   required />
           </div>
           <div>
             <label for="price">Harga</label>
-            <input type="text" id="price" name="price" value="<%= product.price %>" required />
+            <input type="string" id="price" name="price" value="<%= product.price %>" required />
           </div>
           <div>
             <label for="stock">Stok Produk</label>

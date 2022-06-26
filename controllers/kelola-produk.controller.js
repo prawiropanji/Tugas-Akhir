@@ -7,10 +7,28 @@ async function getKelolaProdukPage(req, res) {
 }
 
 function getTambahProduk(req, res) {
-  res.render('admin/produk/tambah-produk');
+  res.render('admin/produk/tambah-produk', {
+    product: null,
+    errorMessage: null,
+  });
 }
 
 async function tambahProduk(req, res) {
+  // validation
+  const enteredValue = {
+    name: req.body.name,
+    price: req.body.price,
+    stock: req.body.stock,
+    category: req.body.category,
+  };
+  if (Object.is(NaN, +req.body.price)) {
+    res.render('admin/produk/tambah-produk', {
+      product: enteredValue,
+      errorMessage: 'Input harga harus berupa angka',
+    });
+    return;
+  }
+
   const product = new Product(
     req.body.name,
     req.body.price,
@@ -30,10 +48,21 @@ async function kelolaProduk(req, res, next) {
     return next(error);
   }
 
-  res.render('admin/produk/detail-produk', { product });
+  res.render('admin/produk/detail-produk', { product, errorMessage: null });
 }
 
 async function ubahProduk(req, res) {
+  const originProduct = await Product.getProductById(req.params.id);
+
+  // validation
+  if (Object.is(NaN, +req.body.price)) {
+    res.render('admin/produk/detail-produk', {
+      product: originProduct,
+      errorMessage: 'Input harga harus berupa angka',
+    });
+    return;
+  }
+
   let product;
   if (req.file) {
     product = new Product(
