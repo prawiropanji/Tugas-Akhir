@@ -41,7 +41,7 @@
                 <td><%= element.void.reason %> </td>
                 <td>
                   <div class="button-group">
-                    <button @click="deleteSale" data-id="<%= element._id %>" type="button" class="btn btn-delete">Terima</button>
+                    <button @click="toggleModal" data-id="<%= element._id %>" type="button" class="btn btn-delete">Terima</button>
                     <button @click="rejectVoid" data-id="<%= element._id %>" type="button" class="btn btn-close">Tolak</button>
                   </div>
                 </td>
@@ -49,6 +49,31 @@
             <%  }) %> 
           </tbody>
         </table>
+
+
+        <div class="modal">
+          <div class="dialog">
+            <p>Apakah anda yakin ingin menghapus transaksi penjualan?</p>
+            <div class="button-group">
+              <button
+                type="button"
+                @click="deleteSale"
+                
+                :data-id="id"
+                class="btn btn-delete btn-modal"
+              >
+                Hapus
+              </button>
+              <button
+                type="button"
+                @click="toggleModal"
+                class="btn btn-close btn-modal"
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
      
       </main>
   </body>

@@ -3,7 +3,16 @@
   </head>
   <body>
     <h1>Okoono</h1>
+
     <main>
+
+      <% if (errorMessage){ %>
+
+        <p class="error">
+          <%= errorMessage; %>
+        </p>
+        <% } %>
+
       <form action="/login" method="POST">
         <div>
           <label for="userid">User Id</label>

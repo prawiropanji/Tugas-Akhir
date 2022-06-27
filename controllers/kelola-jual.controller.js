@@ -2,6 +2,8 @@ const Product = require('../models/produk.model');
 const Cart = require('../models/cart.model');
 const Sale = require('../models/sale.model');
 
+const formatIDCurrency = require('../utils/currency-format');
+
 async function getKelolaJualPage(req, res) {
   const sales = await Sale.getAllSale();
 
@@ -11,11 +13,14 @@ async function getKelolaJualPage(req, res) {
 async function getTambahJual(req, res) {
   const products = await Product.getAllProduct();
 
+  products.map(function (product) {});
+
   res.render('admin/jual/tambah-jual', { products });
 }
 
 async function getCart(req, res) {
-  // console.log(req.session.cart);
+  // console.log(req.session.cart.totalPrice);
+
   res.status(200).json({ cart: req.session.cart, message: 'get cart success' });
 }
 

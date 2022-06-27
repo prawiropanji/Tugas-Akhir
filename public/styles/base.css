@@ -43,13 +43,6 @@ h1 {
   text-align: center;
 }
 
-#realtime-clock p {
-  font-size: 3rem;
-  text-align: center;
-  margin: 0;
-  margin-top: var(--space-4);
-}
-
 .button-group {
   display: flex;
   flex-direction: row;

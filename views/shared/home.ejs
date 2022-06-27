@@ -1,15 +1,32 @@
 <%- include('includes/head', {title: 'Home'}) %> 
+<link rel="stylesheet" href="styles/home.css">
+
 <script src="https://unpkg.com/vue@3"></script>
 <script src="/scripts/live-time.js" defer></script>
 <script src="/scripts/sidebar-menu.js" defer></script>
   </head>
   <body>
-    <%- include('includes/header') %> 
-    <div id="realtime-clock">
-      <p></p>
-    </div>
 
-    <h1>Welcome <%= locals.isAdmin ? 'admin' : 'pegawai' %></h1>
+    <%- include('includes/header') %> 
+    
+
+
+    <h1>Dashboard</h1>
+
+    <div id="dashboard">
+        <article>
+            <h2>Total Transaksi Penjualan</h2>
+            <p><%= saleAmount %></p>
+        </article>
+        <article>
+          <h2>Total Permintaan Void</h2>
+          <p><%= voidAmount %></p>
+      </article>
+      <article>
+        <h2>Total Pemasukan Penjualan</h2>
+        <p class="income-dashboard" ><%= totalSaleIncome %></p>
+    </article>
+    </div>
  
     <nav id="side-nav">
 

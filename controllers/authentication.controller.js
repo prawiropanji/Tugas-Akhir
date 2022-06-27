@@ -1,7 +1,8 @@
+const { render } = require('ejs');
 const User = require('../models/user.model');
 
 function getLoginPage(req, res) {
-  res.render('shared/login');
+  res.render('shared/login', { errorMessage: null });
 }
 
 async function login(req, res) {
@@ -12,12 +13,12 @@ async function login(req, res) {
 
   const userExist = await user.findUser();
   if (!userExist) {
-    res.redirect('/login');
+    res.render('shared/login', { errorMessage: 'userID atau password salah' });
     return;
   }
 
   if (userPassword !== userExist.password) {
-    res.redirect('/login');
+    res.render('shared/login', { errorMessage: 'userID atau password salah' });
     return;
   }
 
@@ -25,8 +26,22 @@ async function login(req, res) {
   req.session.isLoggedIn = true;
   req.session.isAdmin = userExist.isAdmin;
   req.session.save(function () {
-    res.redirect('/home');
+    if (userExist.isAdmin) {
+      res.redirect('/home');
+    } else {
+      res.redirect('/admin/kelola-transaksi-penjualan');
+    }
   });
 }
 
-module.exports = { getLoginPage: getLoginPage, login: login };
+function logout(req, res) {
+  req.session.user = null;
+  req.session.isAdmin = null;
+  req.session.isLoggedIn = null;
+
+  req.session.save(function () {
+    res.redirect('/login');
+  });
+}
+
+module.exports = { getLoginPage: getLoginPage, login: login, logout: logout };

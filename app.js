@@ -10,7 +10,6 @@ const kelolaAkunRoutes = require('./routes/kelola-akun.route');
 const kelolaProdukRoutes = require('./routes/kelola-produk.route');
 const kelolaTransaksiBeliRoutes = require('./routes/kelola-beli.route');
 const kelolaTransaksiJualRoutes = require('./routes/kelola-jual.route');
-const errorRoutes = require('./routes/error.route');
 
 const authMiddleware = require('./middlewares/check-auth');
 const errorMiddleware = require('./middlewares/default-error');
@@ -18,7 +17,6 @@ const routeProtectionMiddleware = require('./middlewares/route-protection');
 const notFoundMiddleware = require('./middlewares/not-found');
 
 const db = require('./data/database');
-const notFondHandler = require('./middlewares/not-found');
 
 const app = express();
 
@@ -47,8 +45,7 @@ app.use(
 );
 
 app.use(authMiddleware);
-app.use('/login', authenticationRoutes);
-// app.use(errorRoutes);
+app.use(authenticationRoutes);
 app.use(routeProtectionMiddleware);
 app.use(baseRoutes);
 app.use('/admin', kelolaAkunRoutes);
@@ -56,7 +53,7 @@ app.use('/admin', kelolaProdukRoutes);
 app.use('/admin', kelolaTransaksiBeliRoutes);
 app.use('/admin', kelolaTransaksiJualRoutes);
 
-app.use(notFondHandler);
+app.use(notFoundMiddleware);
 
 app.use(errorMiddleware);
 

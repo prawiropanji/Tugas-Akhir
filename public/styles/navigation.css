@@ -1,6 +1,22 @@
-header {
+#main-header {
   height: 60px;
   background-color: var(--color-primary);
+  color: white;
+  padding: 0 1rem;
+}
+
+#header-row {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#realtime-clock p {
+  color: white;
+  font-size: 1.7rem;
+  text-align: center;
+  margin: 0;
 }
 
 #main-header nav {
@@ -35,4 +51,13 @@ header {
   height: 0.2rem;
   background-color: var(--color-complementary-100);
   border: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row p {
+  margin: 0 0 0 1rem;
 }

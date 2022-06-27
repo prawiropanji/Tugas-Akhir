@@ -1,0 +1,31 @@
+#dashboard {
+  width: 70%;
+  margin: 7rem auto 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#dashboard article {
+  width: 25%;
+  height: 200px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: var(--radius-big);
+  background-color: var(--color-complementary);
+  text-align: center;
+  overflow: hidden;
+}
+
+#dashboard h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+#dashboard p {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+#dashboard .income-dashboard {
+  font-size: 1.6rem;
+}

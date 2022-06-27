@@ -2,6 +2,7 @@ const KelolaJual = {
   data() {
     return {
       currentDate: new Date(),
+      id: null,
     };
   },
   methods: {
@@ -37,6 +38,8 @@ const KelolaJual = {
 
       const resBody = await response.json();
 
+      document.querySelector('.modal').classList.toggle('open-modal');
+
       document.getElementById(id).remove();
     },
 
@@ -48,6 +51,12 @@ const KelolaJual = {
       });
 
       document.getElementById(id).remove();
+    },
+    toggleModal(event) {
+      const accountId = event.target.dataset.id;
+      this.id = accountId;
+      const modalElement = document.querySelector('.modal');
+      modalElement.classList.toggle('open-modal');
     },
   },
 };

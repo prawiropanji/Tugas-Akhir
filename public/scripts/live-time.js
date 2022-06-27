@@ -13,7 +13,8 @@ function createRealtimeClock() {
 
   let liveTime = `${timeHours} : ${timeMinutes} : ${timeSeconds} ${amPm}`;
 
-  clock.firstElementChild.innerHTML = liveTime;
+  document.getElementById('realtime-clock').firstElementChild.textContent =
+    liveTime;
 }
 
 setInterval(createRealtimeClock, 1000);

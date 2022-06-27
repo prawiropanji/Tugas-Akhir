@@ -1,9 +1,25 @@
+const Sale = require('../models/sale.model');
+const formatIDCurrency = require('../utils/currency-format');
+
 function redirectHomePage(req, res) {
   res.redirect('/home');
 }
 
-function getLandingPage(req, res) {
-  res.render('shared/home');
+async function getLandingPage(req, res) {
+  const sales = await Sale.getAllSale();
+  let totalSaleIncome = 0;
+  sales.forEach(function (sale) {
+    totalSaleIncome += sale.totalPrice;
+  });
+
+  totalSaleIncome = formatIDCurrency(totalSaleIncome);
+
+  const saleAmount = sales.length;
+
+  const voidList = await Sale.getVoid();
+  const voidAmount = voidList.length;
+
+  res.render('shared/home', { voidAmount, totalSaleIncome, saleAmount });
 }
 
 module.exports = {
