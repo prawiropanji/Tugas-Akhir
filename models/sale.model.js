@@ -19,10 +19,47 @@ class Sale {
         month: 'long',
         day: 'numeric',
       });
-      return { ...sale, date };
+      const time = new Date(sale.date).toLocaleTimeString('id-ID');
+      return { ...sale, date, time };
     });
 
     return formatedData;
+  }
+
+  static async getSaleThisDay() {
+    const currentDate = new Date();
+
+    let result = await db
+      .getDb()
+      .collection('sales')
+      .find({
+        date: {
+          $gte: new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            currentDate.getDate()
+          ),
+          $lt: new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            currentDate.getDate() + 1
+          ),
+        },
+      })
+      .toArray();
+
+    result = result.map(function (sale) {
+      const date = new Date(sale.date).toLocaleDateString('id-ID', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      const time = new Date(sale.date).toLocaleTimeString('id-ID');
+      return { ...sale, time, date };
+    });
+
+    return result;
   }
 
   static async getSaleById(id) {

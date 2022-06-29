@@ -25,12 +25,13 @@
               <th>Total Harga</th>
               <th>Metode Pembayaran</th>
               <th>Kasir</th>
-              <th>Tanggal Jual</th>
+              <th>Waktu Jual</th>
               <th>Status Void</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
+            <h1><%= currentDate %></h1>
             <% sales.map(function(element,index){  %> 
               <tr class="<%= element.void? 'red-font' : null %> ">
                 <td><%= ++index %></td>
@@ -39,7 +40,7 @@
                 <td><%= element.paymentMethod %></td>
                 <td><%= element.cashier %></td>
              
-                <td><%= element.date %></td>
+                <td><%= element.time %> WIB</td>
                 <td><%= !element.void? null : "menunggu void" %> </td>
                 <td>
                   <a href="/admin/kelola-transaksi-penjualan/<%= element._id %>" class="btn"> Lihat </a>

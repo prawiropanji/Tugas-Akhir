@@ -5,9 +5,17 @@ const Sale = require('../models/sale.model');
 const formatIDCurrency = require('../utils/currency-format');
 
 async function getKelolaJualPage(req, res) {
-  const sales = await Sale.getAllSale();
+  console.log(await Sale.getSaleThisDay());
 
-  res.render('admin/jual/kelola-jual', { sales });
+  const sales = await Sale.getSaleThisDay();
+
+  const currentDate = new Date().toLocaleDateString('id-ID', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  res.render('admin/jual/kelola-jual', { sales, currentDate });
 }
 
 async function getTambahJual(req, res) {
