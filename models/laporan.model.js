@@ -3,6 +3,58 @@ const formatIDCurrency = require('../utils/currency-format');
 const dateFormat = require('../utils/date-format');
 
 class Laporan {
+  static async getAmountOfSaleByDay(dateObj) {
+    return await db
+      .getDb()
+      .collection('sales')
+      .aggregate([
+        {
+          $match: {
+            date: {
+              $gte: new Date(
+                dateObj.getFullYear(),
+                dateObj.getMonth(),
+                dateObj.getDate()
+              ),
+              $lt: new Date(
+                dateObj.getFullYear(),
+                dateObj.getMonth(),
+                dateObj.getDate() + 1
+              ),
+            },
+          },
+        },
+        { $group: { _id: null, countSale: { $sum: 1 } } },
+      ])
+      .toArray();
+  }
+
+  static async getTotalIncomeByDay(dateObj) {
+    return await db
+      .getDb()
+      .collection('sales')
+      .aggregate([
+        {
+          $match: {
+            date: {
+              $gte: new Date(
+                dateObj.getFullYear(),
+                dateObj.getMonth(),
+                dateObj.getDate()
+              ),
+              $lt: new Date(
+                dateObj.getFullYear(),
+                dateObj.getMonth(),
+                dateObj.getDate() + 1
+              ),
+            },
+          },
+        },
+        { $group: { _id: null, totalPrice: { $sum: '$totalPrice' } } },
+      ])
+      .toArray();
+  }
+
   static async getTotalIncomeByMonth(dateObj) {
     return await db
       .getDb()

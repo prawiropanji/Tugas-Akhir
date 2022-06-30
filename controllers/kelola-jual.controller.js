@@ -5,7 +5,12 @@ const Sale = require('../models/sale.model');
 const formatIDCurrency = require('../utils/currency-format');
 
 async function getKelolaJualPage(req, res) {
-  const sales = await Sale.getSaleThisDay();
+  let sales = await Sale.getSaleThisDay();
+
+  sales = sales.map(function (sale) {
+    const totalPrice = formatIDCurrency(sale.totalPrice);
+    return { ...sale, totalPrice };
+  });
 
   const currentDate = new Date().toLocaleDateString('id-ID', {
     weekday: 'long',

@@ -1,4 +1,5 @@
 h2 {
+  font-size: 2.6rem;
   text-align: center;
   margin-top: 4rem;
 }
@@ -13,8 +14,26 @@ label {
   text-align: end;
 }
 
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .btn {
   width: fit-content;
+  height: fit-content;
+}
+
+.btn-download {
+  background-color: #3e1fc7;
+  border: transparent;
+  width: 6rem;
+  border-radius: 20px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 form {
@@ -22,4 +41,19 @@ form {
   flex-direction: column;
   align-items: flex-end;
   gap: 1rem 0;
+}
+
+.icon {
+  width: 27px;
+  margin: 0;
+}
+
+body #report-links a {
+  color: black;
+  margin-right: 2rem;
+}
+
+body #report-links a:hover,
+body #report-links a:target {
+  color: blue;
 }

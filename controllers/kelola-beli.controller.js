@@ -1,7 +1,12 @@
 const Beli = require('../models/purchase.model');
+const formatIDCurrency = require('../utils/currency-format');
 
 async function getKelolaBeliPage(req, res) {
-  const purchases = await Beli.getAllPurchase();
+  let purchases = await Beli.getAllPurchase();
+  purchases = purchases.map(function (purchase) {
+    const price = formatIDCurrency(+purchase.price);
+    return { ...purchase, price };
+  });
 
   res.render('admin/beli/kelola-beli', { purchases });
 }

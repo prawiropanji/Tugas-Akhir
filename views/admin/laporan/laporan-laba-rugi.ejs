@@ -1,4 +1,4 @@
-<%- include('../../shared/includes/head', {title: 'Laporan Penjualan' }) %>
+<%- include('../../shared/includes/head', {title: 'Laporan Laba Rugi' }) %>
 
   <link rel="stylesheet" href="/styles/jual.css">
   <link rel="stylesheet" href="/styles/laporan.css">
@@ -22,7 +22,7 @@
 
         <div id="report-links">
         <a href="/admin/laporan">Laporan Penjualan</a>
-        <a href="/admin/laporan/laba-rugi">Laporan Laba-rugi</a>
+        <a href="">Laporan Laba-rugi</a>
         </div>
 
         <div class="flex-row">
@@ -37,7 +37,7 @@
             </div> <span>PDF</span> </button>
 
 
-          <form action="/admin/laporan/pilih" method="GET">
+          <form action="/admin/laporan/laba-rugi/pilih" method="GET">
             <label for="selected-month">Bulan</label>
             <input type="month" name="selected-month" value="<%= selectedYMDate %>" id="selected-month">
             <button class="btn">Pilih</button>
@@ -50,22 +50,25 @@
 
 
 
-        <h2 id="report-title">Laporan Penjualan Bulan <%= currentMonth %>
+        <h2 id="report-title">Laporan Laba Rugi Bulan <%= currentMonth %>
         </h2>
-        <table id="table-one">
+
+
+        <h2>Penjualan Berdasarkan Produk</h2>
+
+        <table id="table-two">
           <thead>
             <tr>
               <th>No</th>
-              <th>ID Transaksi</th>
               <th>Nama Produk</th>
-              <th>Jumlah Jual</th>
-              <th>Tanggal Jual</th>
-              <th>Total Jual</th>
+              <th>Jumlah Terjual</th>
+              <th>Total Jual </th>
+
             </tr>
           </thead>
           <tbody>
 
-            <% sales.map(function(element,index){ %>
+            <% salesByProduct.map(function(element,index){ %>
               <tr>
                 <td>
                   <%= ++index %>
@@ -74,17 +77,12 @@
                   <%= element._id %>
                 </td>
                 <td>
-                  <%= element.products.name %>
+                  <%= element.totalSoldQuantity %>
                 </td>
                 <td>
-                  <%= element.products.quantity %>
+                  <%= element.totalSoldPrice %>
                 </td>
-                <td>
-                  <%= element.date %> WIB
-                </td>
-                <td>
-                  <%= element.totalPrice %>
-                </td>
+
 
               </tr>
               <% }) %>
@@ -93,8 +91,6 @@
 
         </table>
 
-
-       
         <p id="grand-total">Total Akhir Penjualan : <b>
             <%= totalPrice %>
 

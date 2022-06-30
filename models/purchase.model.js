@@ -11,6 +11,33 @@ class Purchase {
     this.description = beliData.description;
   }
 
+  static async getExpensesByMonth(dateObj) {
+    let result = await db
+      .getDb()
+      .collection('purchases')
+      .aggregate([
+        {
+          $match: {
+            date: {
+              $gte: new Date(dateObj.getFullYear(), dateObj.getMonth(), 1),
+              $lt: new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 1),
+            },
+          },
+        },
+        {
+          $addFields: {
+            totalPrice: {
+              $multiply: [{ $toInt: '$price' }, { $toInt: '$quantity' }],
+            },
+          },
+        },
+        { $group: { _id: null, totalExpenses: { $sum: '$totalPrice' } } },
+      ])
+      .toArray();
+
+    return result[0].totalExpenses;
+  }
+
   static async getAllPurchase() {
     const purchases = await db.getDb().collection('purchases').find().toArray();
     const formatedData = purchases.map(function (purchase) {
