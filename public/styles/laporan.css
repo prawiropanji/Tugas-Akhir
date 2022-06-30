@@ -1,0 +1,25 @@
+h2 {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+input,
+label {
+  display: block;
+}
+
+#grand-total {
+  margin-top: 4rem;
+  text-align: end;
+}
+
+.btn {
+  width: fit-content;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem 0;
+}

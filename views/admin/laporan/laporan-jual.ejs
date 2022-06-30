@@ -1,0 +1,95 @@
+<%- include('../../shared/includes/head', {title: 'Kelola Transaksi Penjualan' }) %>
+
+  <link rel="stylesheet" href="/styles/jual.css">
+  <link rel="stylesheet" href="/styles/laporan.css">
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="/scripts/sidebar-menu.js" defer></script>
+  <script src="/scripts/kelola-jual.js" defer></script>
+  
+
+  </head>
+
+  <body>
+    <%- include('../../shared/includes/header') %>
+
+    
+    <h1>Kelola Transaksi Penjualan</h1>
+    
+    
+    <main class="main-kelola">
+      <a href="/admin/kelola-transaksi-penjualan/tambah" id="tambah-penjualan-btn" class="btn btn-add">Tambah Transkasi Penjualan</a>
+      
+      <form action="/admin/laporan/pilih" method="GET">
+      <label for="selected-month">Bulan</label>
+      <input type="month" name="selected-month" value="<%= selectedYMDate %>" id="selected-month">
+      <button class="btn">Pilih</button>
+     </form>
+      
+        <h2>Laporan Penjualan Bulan <%= currentMonth %></h2>
+        <table id="init-sales">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ID Transaksi</th>
+              <th>Nama Produk</th>
+              <th>Jumlah Jual</th>
+              <th>Tanggal Jual</th>
+              <th>Total Jual</th>
+            </tr>
+          </thead>
+          <tbody>
+           
+            <% sales.map(function(element,index){  %> 
+              <tr>
+                <td><%= ++index %></td>
+                <td><%= element._id %></td>
+                <td><%= element.products.name %></td>
+                <td><%= element.products.quantity %></td>
+                <td><%= element.date %> WIB</td>
+                <td><%= element.totalPrice %></td>
+         
+              </tr>
+            <%  }) %>
+          
+          </tbody>
+       
+        </table>
+
+
+        <h2>Penjualan Berdasarkan Produk</h2>
+
+        <table id="init-sales-by-prod">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Produk</th>
+              <th>Jumlah Terjual</th>
+              <th>Total Jual </th>
+             
+            </tr>
+          </thead>
+          <tbody>
+           
+            <% salesByProduct.map(function(element,index){  %> 
+              <tr>
+                <td><%= ++index %></td>
+                <td><%= element._id %></td>
+                <td><%= element.totalSoldQuantity %></td>
+                <td><%= element.totalSoldPrice %></td>
+           
+         
+              </tr>
+            <%  }) %>
+          
+          </tbody>
+       
+        </table>
+
+        <p id="grand-total">Total Akhir Penjualan : <b><%= totalPrice %></b></p>
+
+
+     
+      </main>
+  </body>
+
+  </html>

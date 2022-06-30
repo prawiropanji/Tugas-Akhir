@@ -2,6 +2,8 @@ const db = require('../data/database');
 const mongodb = require('mongodb');
 const currencyFormatter = require('currency-formatter');
 
+const dateFormatter = require('../utils/date-format');
+
 class Sale {
   constructor(saleData) {
     this.products = saleData.products;
@@ -13,17 +15,39 @@ class Sale {
   static async getAllSale() {
     const sales = await db.getDb().collection('sales').find().toArray();
     const formatedData = sales.map(function (sale) {
-      const date = new Date(sale.date).toLocaleDateString('id-ID', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
+      const date = dateFormatter.indonesiafullDateFormat(sale.date);
       const time = new Date(sale.date).toLocaleTimeString('id-ID');
       return { ...sale, date, time };
     });
 
     return formatedData;
+  }
+
+  static async getSaleThisMonth() {
+    const currentDate = new Date();
+
+    let result = await db
+      .getDb()
+      .collection('sales')
+      .find({
+        date: {
+          $gte: new Date(currentDate.getFullYear(), currentDate.getMonth(), 1),
+          $lt: new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth() + 1,
+            1
+          ),
+        },
+      })
+      .toArray();
+
+    result = result.map(function (sale) {
+      const date = dateFormatter.indonesiafullDateFormat(sale.date);
+
+      return { ...sale, date };
+    });
+
+    return result;
   }
 
   static async getSaleThisDay() {
@@ -49,12 +73,7 @@ class Sale {
       .toArray();
 
     result = result.map(function (sale) {
-      const date = new Date(sale.date).toLocaleDateString('id-ID', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
+      const date = dateFormatter.indonesiafullDateFormat(sale.date);
       const time = new Date(sale.date).toLocaleTimeString('id-ID');
       return { ...sale, time, date };
     });

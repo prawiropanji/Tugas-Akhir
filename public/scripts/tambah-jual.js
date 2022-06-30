@@ -61,8 +61,6 @@ const TambahJual = {
 
       bodyRes = await response.json();
 
-      console.log(bodyRes);
-
       if (bodyRes.errorMessage) {
         alert(bodyRes.errorMessage);
         return;

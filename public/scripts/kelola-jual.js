@@ -28,7 +28,6 @@ const KelolaJual = {
     async deleteSale(event) {
       const id = event.target.dataset.id;
 
-      console.log(id);
       const response = await fetch(
         `/admin/kelola-transkasi-penjualan/${id}/hapus`,
         {

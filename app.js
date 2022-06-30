@@ -10,6 +10,7 @@ const kelolaAkunRoutes = require('./routes/kelola-akun.route');
 const kelolaProdukRoutes = require('./routes/kelola-produk.route');
 const kelolaTransaksiBeliRoutes = require('./routes/kelola-beli.route');
 const kelolaTransaksiJualRoutes = require('./routes/kelola-jual.route');
+const laporanRoutes = require('./routes/laporan.route');
 
 const authMiddleware = require('./middlewares/check-auth');
 const errorMiddleware = require('./middlewares/default-error');
@@ -52,6 +53,7 @@ app.use('/admin', kelolaAkunRoutes);
 app.use('/admin', kelolaProdukRoutes);
 app.use('/admin', kelolaTransaksiBeliRoutes);
 app.use('/admin', kelolaTransaksiJualRoutes);
+app.use('/admin', laporanRoutes);
 
 app.use(notFoundMiddleware);
 
