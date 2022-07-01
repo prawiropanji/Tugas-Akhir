@@ -2,6 +2,7 @@
 
   <link rel="stylesheet" href="/styles/jual.css">
   <link rel="stylesheet" href="/styles/laporan.css">
+  <link rel="stylesheet" href="/styles/laporan-laba-rugi.css">
   <script src="https://unpkg.com/vue@3"></script>
   <script src="/scripts/sidebar-menu.js" defer></script>
   <script src="/scripts/kelola-jual.js" defer></script>
@@ -50,13 +51,12 @@
 
 
 
-        <h2 id="report-title">Laporan Laba Rugi Bulan <%= currentMonth %>
-        </h2>
+        <h1 id="report-title">Laporan Laba Rugi Bulan <%= currentMonth %></h1>
 
 
-        <h2>Penjualan Berdasarkan Produk</h2>
+        <h2>Pendapatan Penjualan</h2>
 
-        <table id="table-two">
+        <table id="table-one">
           <thead>
             <tr>
               <th>No</th>
@@ -91,8 +91,50 @@
 
         </table>
 
-        <p id="grand-total">Total Akhir Penjualan : <b>
-            <%= totalPrice %>
+        <p class="grand-total grand-sub-total">Total Akhir Pendapatan : <%= totalPrice %>  </p>
+
+
+        <h2>Harga Pokok Penjualan (HPP)</h2>
+        <table id="table-two">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Produk</th>
+              <th>Jumlah Beli</th>
+              <th>Total Beli </th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <% purchasedByProduct.map(function(element,index){ %>
+              <tr>
+                <td>
+                  <%= ++index %>
+                </td>
+                <td>
+                  <%= element._id %>
+                </td>
+                <td>
+                  <%= element.totalQuantity %>
+                </td>
+                <td>
+                  <%= element.totalExpenses %>
+                </td>
+
+
+              </tr>
+              <% }) %>
+
+          </tbody>
+
+        </table>
+
+        <p class="grand-total grand-sub-total">Total Akhir HPP : <%= totalExpenses %></p>
+
+
+        <hr>
+        <p class="grand-total"> Laba bersih: <b><%= incomeStatement %></b></p>
 
 
 

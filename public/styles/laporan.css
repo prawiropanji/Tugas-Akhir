@@ -9,7 +9,7 @@ label {
   display: block;
 }
 
-#grand-total {
+.grand-total {
   margin-top: 4rem;
   text-align: end;
 }

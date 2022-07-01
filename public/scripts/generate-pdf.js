@@ -1,5 +1,5 @@
 const titleText = document.getElementById('report-title').textContent;
-const grandTotalText = document.getElementById('grand-total').textContent;
+const grandTotalText = document.querySelector('.grand-total').textContent;
 
 function generatePDF() {
   var doc = new jsPDF('p', '', 'a4');

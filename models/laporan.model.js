@@ -56,7 +56,7 @@ class Laporan {
   }
 
   static async getTotalIncomeByMonth(dateObj) {
-    return await db
+    let result = await db
       .getDb()
       .collection('sales')
       .aggregate([
@@ -71,6 +71,14 @@ class Laporan {
         { $group: { _id: null, totalPrice: { $sum: '$totalPrice' } } },
       ])
       .toArray();
+
+    if (result.length > 0) {
+      result = result[0].totalPrice;
+    } else {
+      result = 0;
+    }
+
+    return result;
   }
 
   static async getSalesForEachProductByMonth(dateObj) {

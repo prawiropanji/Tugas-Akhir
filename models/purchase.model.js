@@ -11,6 +11,61 @@ class Purchase {
     this.description = beliData.description;
   }
 
+  static async getQuantityEachPurchasedItemByMonth(dateObj) {
+    return await db
+      .getDb()
+      .collection('purchases')
+      .aggregate([
+        {
+          $match: {
+            date: {
+              $gte: new Date(dateObj.getFullYear(), dateObj.getMonth(), 1),
+              $lt: new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 1),
+            },
+          },
+        },
+        {
+          $addFields: {
+            totalPrice: {
+              $multiply: [{ $toInt: '$price' }, { $toInt: '$quantity' }],
+            },
+          },
+        },
+        {
+          $group: {
+            _id: '$name',
+            totalQuantity: { $sum: { $toInt: '$quantity' } },
+          },
+        },
+      ])
+      .toArray();
+  }
+
+  static async getExpensesEachPurchasedItemByMonth(dateObj) {
+    return await db
+      .getDb()
+      .collection('purchases')
+      .aggregate([
+        {
+          $match: {
+            date: {
+              $gte: new Date(dateObj.getFullYear(), dateObj.getMonth(), 1),
+              $lt: new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 1),
+            },
+          },
+        },
+        {
+          $addFields: {
+            totalPrice: {
+              $multiply: [{ $toInt: '$price' }, { $toInt: '$quantity' }],
+            },
+          },
+        },
+        { $group: { _id: '$name', totalExpenses: { $sum: '$totalPrice' } } },
+      ])
+      .toArray();
+  }
+
   static async getExpensesByMonth(dateObj) {
     let result = await db
       .getDb()
@@ -35,7 +90,13 @@ class Purchase {
       ])
       .toArray();
 
-    return result[0].totalExpenses;
+    if (result.length > 0) {
+      result = result[0].totalExpenses;
+    } else {
+      result = 0;
+    }
+
+    return result;
   }
 
   static async getAllPurchase() {
