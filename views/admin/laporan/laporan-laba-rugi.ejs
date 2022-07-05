@@ -11,7 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 
-  <script src="/scripts/generate-pdf.js" defer></script>
+  <script src="/scripts/generate-pdf-laba-rugi.js" defer></script>
 
   </head>
 
@@ -86,12 +86,15 @@
 
               </tr>
               <% }) %>
+              <tr>
+                <th class="total-cell" colspan="4"> Total Akhir Pendapatan: <%= totalPrice %></th>
+              </tr>
 
           </tbody>
 
         </table>
 
-        <p class="grand-total grand-sub-total">Total Akhir Pendapatan : <%= totalPrice %>  </p>
+      
 
 
         <h2>Harga Pokok Penjualan (HPP)</h2>
@@ -126,15 +129,18 @@
               </tr>
               <% }) %>
 
+              <tr>
+                <th class="total-cell" colspan="4">Total Akhir HPP : <%= totalExpenses %></th>
+              </tr>
+
           </tbody>
 
         </table>
 
-        <p class="grand-total grand-sub-total">Total Akhir HPP : <%= totalExpenses %></p>
 
 
         <hr>
-        <p class="grand-total"> Laba bersih: <b><%= incomeStatement %></b></p>
+        <p id="income-statement" class="grand-total"> Laba Bersih: <b><%= incomeStatement %></b></p>
 
 
 

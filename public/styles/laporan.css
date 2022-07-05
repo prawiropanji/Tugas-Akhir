@@ -57,3 +57,12 @@ body #report-links a:hover,
 body #report-links a:target {
   color: blue;
 }
+
+.total-cell {
+  text-align: right;
+}
+
+hr {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
