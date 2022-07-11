@@ -24,7 +24,7 @@ async function getKelolaJualPage(req, res) {
 async function getTambahJual(req, res) {
   const products = await Product.getAllProduct();
 
-  products.map(function (product) {});
+  // products.map(function (product) {});
 
   res.render('admin/jual/tambah-jual', { products });
 }

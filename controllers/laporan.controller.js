@@ -10,7 +10,8 @@ async function getLaporanLabaRugi(req, res) {
   let totalPrice = await Laporan.getTotalIncomeByMonth(new Date());
 
   //calculate incomeStatement
-  const incomeStatement = totalPrice - totalExpenses;
+  let incomeStatement = totalPrice - totalExpenses;
+  incomeStatement = formatIDCurrency(incomeStatement);
 
   //format currency for expenses and income
   if (totalExpenses) {
